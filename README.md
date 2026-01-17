@@ -367,6 +367,18 @@ Here are solutions to common issues you might encounter:
 - **VPN Conflicts:** Using a VPN might interfere with downloading Docker images. If you encounter issues pulling images, try temporarily disabling your VPN.
 - **Server Requirements:** If you experience unexpected issues, ensure your server meets the minimum hardware and operating system requirements (including version) as specified in the "Prerequisites before Installation" section.
 
+### Update Script Not Working
+
+- **Symptom:** The `make update` command fails, shows errors, or doesn't apply the latest changes.
+- **Cause:** This can happen if your local repository has diverged from the upstream, has uncommitted changes, or is in an inconsistent state.
+- **Solution:** Run the following command to force-sync your local installation with the latest version:
+
+  ```bash
+  git config pull.rebase true && git fetch origin && git checkout main && git reset --hard "origin/main" && make update
+  ```
+
+  **Warning:** This will discard any local changes you've made to the installer files. If you've customized any scripts or configurations, back them up first.
+
 ## Recommended Reading
 
 n8n offers excellent resources for getting started with its AI capabilities:
